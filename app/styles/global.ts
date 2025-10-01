@@ -7,7 +7,7 @@ const globalStyles = {
     backgroundColor: flywiseColors.background,
   },
   spacer: {
-    height: 20,
+    height: 5,
   },
   row: {
     flexDirection: 'row' as const,
@@ -31,17 +31,32 @@ const globalStyles = {
   flighttype: {
     ...typography.body,
     color: flywiseColors.background,
-    paddingHorizontal: 12,
+    paddingHorizontal: 10,
     paddingVertical: 10,
+    borderRadius: 8,
+    marginHorizontal: 4,
+  },
+  selectedFlightType: {
+    color: flywiseColors.secondary,
+  },
+  flighttypeText: {
+   ...typography.body,
+   color: flywiseColors.quaternary,
+  },
+  selectedFlightTypeText: {
+    ...typography.body,
+    fontFamily: "Raleway_700Bold",
+    color: flywiseColors.background,
   },
   textinput: {
     ...typography.body,
     color: flywiseColors.background,
+   width: 180,
     paddingHorizontal: 12,
     paddingVertical: 10,
     backgroundColor: flywiseColors.background,
-    marginTop: 10,
-    marginHorizontal: 12,
+    marginHorizontal: 5,
+    
   },
 };
 

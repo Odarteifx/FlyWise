@@ -1,8 +1,8 @@
 import { Raleway_400Regular, Raleway_500Medium, Raleway_600SemiBold, Raleway_700Bold, Raleway_800ExtraBold, Raleway_900Black } from "@expo-google-fonts/raleway";
 
 import { useFonts } from "expo-font";
-import React from "react";
-import { Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import globalStyles from "./styles/global";
 
 export default function Index() {
@@ -15,9 +15,13 @@ export default function Index() {
     Raleway_900Black,
   });
 
+  const [selectedFlightType, setSelectedFlightType] = useState('Roundtrip');
+
   if (!fontsLoaded) {
     return null;
   }
+
+  const flightTypes = ['Roundtrip', 'One Way', 'Multi-City'];
 
   return (
     <View style={globalStyles.container}>
@@ -27,17 +31,28 @@ export default function Index() {
         </Text>
         <View style={globalStyles.spacer}/>
         <View style={[globalStyles.row, { justifyContent: 'center' }]}>
-          <Text style={globalStyles.flighttype}>
-            Roundtrip
-          </Text>
-          <Text style={globalStyles.flighttype}>
-            One Way
-          </Text>
-          <Text style={globalStyles.flighttype}>
-            Multi-City
-          </Text>
+          {flightTypes.map((type) => (
+            <TouchableOpacity
+              key={type}
+              onPress={() => setSelectedFlightType(type)}
+              style={[
+                globalStyles.flighttype,
+              ]}
+            >
+              <Text style={[
+                globalStyles.flighttypeText,
+                selectedFlightType === type && globalStyles.selectedFlightTypeText
+              ]}>
+                {type}
+              </Text>
+            </TouchableOpacity>
+          ))}
+          <View style={globalStyles.spacer}/>
         </View>
-        <TextInput style={globalStyles.textinput}  placeholder="Search for a flight" />
+        <View style={[globalStyles.row, { justifyContent: 'center' }]}>
+        <TextInput style={globalStyles.textinput}  placeholder="From" />
+        <TextInput style={globalStyles.textinput}  placeholder="To" />
+        </View>
 
       </View>
     </View>
